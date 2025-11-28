@@ -1,17 +1,60 @@
-# Welcome to MkDocs
+# 安全开发笔记库
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## 项目介绍
 
-## Commands
+欢迎使用安全开发笔记库！这是一个专注于Web安全和Python高级编程的技术文档集合，旨在帮助开发者学习和掌握安全开发技能。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+本笔记库涵盖了常见的Web安全漏洞分析与防御措施，以及Python高级编程技术（面向对象编程、多线程和协程），为安全开发实践提供全面的参考资料。
 
-## Project layout
+## 主要内容
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+### 1. Web安全漏洞
+
+详细介绍常见的Web安全漏洞，包括漏洞原理、攻击示例和防御措施：
+
+* **SQL注入** - 分析SQL注入漏洞的工作原理，提供防御策略和安全编码示例
+* **XSS跨站脚本** - 介绍存储型、反射型和DOM型XSS漏洞，以及相应的防护技术
+* **CSRF跨站请求伪造** - 解释CSRF攻击机制，提供有效的防御方法
+* **命令注入** - 分析命令注入漏洞的成因和危害，提供安全的替代方案
+* **文件上传漏洞** - 探讨文件上传漏洞的风险，提供安全的文件处理实践
+* **认证与授权漏洞** - 详细讲解身份认证和访问控制中的常见安全问题
+
+### 2. Python高级编程
+
+深入探讨Python高级编程技术，提升代码质量和性能：
+
+* **面向对象编程** - 详细讲解类、继承、多态、封装等面向对象概念和最佳实践
+* **多线程编程** - 介绍线程的创建、同步和通信，以及线程池的使用
+* **协程与异步编程** - 探讨asyncio库的使用，实现高效的异步I/O操作
+* **并发编程最佳实践** - 总结并发编程中的安全实践和性能优化技巧
+
+## 使用指南
+
+### 本地构建和预览
+
+要在本地构建和预览文档，请按照以下步骤操作：
+
+1. 确保已安装Python和MkDocs
+2. 克隆或下载本项目
+3. 在项目根目录执行以下命令：
+
+```bash
+# 安装依赖
+pip install -r requirements.txt
+
+# 启动本地服务器
+mkdocs serve
+
+# 或构建静态文件
+mkdocs build
+```
+
+启动本地服务器后，可以通过浏览器访问 `http://localhost:8000` 预览文档。
+
+## 贡献指南
+
+欢迎贡献内容！如果您发现错误或有新的内容要添加，请提交合并请求或创建问题。
+
+## 许可证
+
+本项目采用MIT许可证。详情请参阅LICENSE文件。

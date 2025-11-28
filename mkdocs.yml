@@ -1,4 +1,37 @@
-site_name: My site
-site_url: https://mydomain.org/mysite
+site_name: 安全开发笔记库
+site_description: Web安全漏洞与Python高级编程学习笔记
+site_url: https://mydomain.org/secure-dev-guide
 theme:
   name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+
+nav:
+  - 首页: index.md
+  - Web安全漏洞:
+    - 概述: web-security/overview.md
+    - SQL注入: web-security/sql-injection.md
+    - XSS跨站脚本: web-security/xss.md
+    - CSRF跨站请求伪造: web-security/csrf.md
+    - 命令注入: web-security/command-injection.md
+    - 文件上传漏洞: web-security/file-upload.md
+    - 认证与授权: web-security/authentication.md
+  - Python高级编程:
+    - 概述: python-advanced/overview.md
+    - 面向对象编程: python-advanced/oop.md
+    - 多线程编程: python-advanced/multithreading.md
+    - 协程与异步编程: python-advanced/coroutines.md
+    - 并发编程最佳实践: python-advanced/concurrency-best-practices.md
