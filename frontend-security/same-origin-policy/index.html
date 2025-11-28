@@ -12,13 +12,13 @@
         <meta name="author" content="开发者">
       
       
-        <link rel="canonical" href="https://mydomain.org/secure-dev-guide/web-security/overview/">
+        <link rel="canonical" href="https://mydomain.org/secure-dev-guide/frontend-security/same-origin-policy/">
       
       
-        <link rel="prev" href="../../frontend-security/cross-origin/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../sql-injection/">
+        <link rel="next" href="../cross-origin/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>概述 - 安全开发笔记库</title>
+        <title>同源策略 - 安全开发笔记库</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web" class="md-skip">
+        <a href="#same-origin-policy" class="md-skip">
           跳转至
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概述
+              同源策略
             
           </span>
         </div>
@@ -230,11 +230,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../frontend-security/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -250,13 +252,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../web-security/overview/" class="md-tabs__link">
           
   
   
@@ -369,26 +369,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -401,7 +406,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             前端安全
@@ -415,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend-security/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -435,10 +440,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../frontend-security/same-origin-policy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    同源策略
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -449,6 +476,182 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是同源策略？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源的定义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源检测示例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源策略的限制范围
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="同源策略的限制范围">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-dom" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. DOM 访问
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-xmlhttprequest-fetch-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. XMLHttpRequest 和 Fetch API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cookielocalstorage-indexeddb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Cookie、LocalStorage 和 IndexedDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 其他资源访问限制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源策略的例外
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="同源策略的例外">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 允许跨源嵌入的资源
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 跨源资源共享 (CORS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-jsonp-json-with-padding" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. JSONP (JSON with Padding)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源策略的重要性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      同源策略的绕过风险
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何安全处理跨源交互
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -461,7 +664,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend-security/cross-origin/" class="md-nav__link">
+      <a href="../cross-origin/" class="md-nav__link">
         
   
   
@@ -488,31 +691,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -525,7 +723,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Web安全漏洞
@@ -536,32 +734,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    概述
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../web-security/overview/" class="md-nav__link">
         
   
   
@@ -572,131 +748,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#web_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      什么是Web安全漏洞？
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见的Web安全漏洞类型
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常见的Web安全漏洞类型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sql-sql-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      SQL注入 (SQL Injection)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xss-cross-site-scripting" class="md-nav__link">
-    <span class="md-ellipsis">
-      跨站脚本攻击 (XSS - Cross-Site Scripting)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#csrf-cross-site-request-forgery" class="md-nav__link">
-    <span class="md-ellipsis">
-      跨站请求伪造 (CSRF - Cross-Site Request Forgery)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#command-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      命令注入 (Command Injection)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      文件上传漏洞
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      认证与授权问题
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Web安全的重要性
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sdlc" class="md-nav__link">
-    <span class="md-ellipsis">
-      安全开发生命周期 (SDLC)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      学习资源
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -709,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-injection/" class="md-nav__link">
+      <a href="../../web-security/sql-injection/" class="md-nav__link">
         
   
   
@@ -732,7 +783,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xss/" class="md-nav__link">
+      <a href="../../web-security/xss/" class="md-nav__link">
         
   
   
@@ -755,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../csrf/" class="md-nav__link">
+      <a href="../../web-security/csrf/" class="md-nav__link">
         
   
   
@@ -778,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command-injection/" class="md-nav__link">
+      <a href="../../web-security/command-injection/" class="md-nav__link">
         
   
   
@@ -801,7 +852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-upload/" class="md-nav__link">
+      <a href="../../web-security/file-upload/" class="md-nav__link">
         
   
   
@@ -824,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../authentication/" class="md-nav__link">
+      <a href="../../web-security/authentication/" class="md-nav__link">
         
   
   
@@ -1650,42 +1701,128 @@
 
 
 
-<h1 id="web">Web安全漏洞概述<a class="headerlink" href="#web" title="Permanent link">&para;</a></h1>
-<h2 id="web_1">什么是Web安全漏洞？<a class="headerlink" href="#web_1" title="Permanent link">&para;</a></h2>
-<p>Web安全漏洞是指Web应用程序中存在的安全缺陷，可能被攻击者利用来获取未授权的访问权限、篡改数据、破坏服务或执行其他恶意操作。</p>
-<h2 id="web_2">常见的Web安全漏洞类型<a class="headerlink" href="#web_2" title="Permanent link">&para;</a></h2>
-<p>本笔记库将详细介绍以下几类常见的Web安全漏洞：</p>
-<h3 id="sql-sql-injection">SQL注入 (SQL Injection)<a class="headerlink" href="#sql-sql-injection" title="Permanent link">&para;</a></h3>
-<p>攻击者通过在输入字段中插入恶意SQL代码，操纵后端数据库查询，可能导致数据泄露、数据篡改甚至服务器控制。</p>
-<h3 id="xss-cross-site-scripting">跨站脚本攻击 (XSS - Cross-Site Scripting)<a class="headerlink" href="#xss-cross-site-scripting" title="Permanent link">&para;</a></h3>
-<p>攻击者在Web页面中注入恶意脚本，当其他用户浏览该页面时，脚本会在用户浏览器中执行，可能导致会话劫持、数据盗窃等问题。</p>
-<h3 id="csrf-cross-site-request-forgery">跨站请求伪造 (CSRF - Cross-Site Request Forgery)<a class="headerlink" href="#csrf-cross-site-request-forgery" title="Permanent link">&para;</a></h3>
-<p>攻击者诱导用户在已认证的Web应用程序上执行非预期的操作，利用用户的身份执行恶意请求。</p>
-<h3 id="command-injection">命令注入 (Command Injection)<a class="headerlink" href="#command-injection" title="Permanent link">&para;</a></h3>
-<p>攻击者通过Web应用程序执行系统命令，可能导致服务器完全被控制。</p>
-<h3 id="_1">文件上传漏洞<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>不安全的文件上传功能可能允许攻击者上传恶意文件，如WebShell，从而获取服务器访问权限。</p>
-<h3 id="_2">认证与授权问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>认证机制缺陷或授权控制不当可能导致未授权访问敏感功能或数据。</p>
-<h2 id="web_3">Web安全的重要性<a class="headerlink" href="#web_3" title="Permanent link">&para;</a></h2>
-<p>随着Web应用程序在企业和个人生活中的广泛应用，Web安全问题日益突出。安全的Web应用程序设计不仅能够保护用户数据安全，还能维护企业的声誉和避免法律责任。</p>
-<h2 id="sdlc">安全开发生命周期 (SDLC)<a class="headerlink" href="#sdlc" title="Permanent link">&para;</a></h2>
-<p>在开发过程中集成安全考虑是预防Web安全漏洞的最佳实践。安全开发生命周期包括：</p>
+<h1 id="same-origin-policy">同源策略 (Same-Origin Policy)<a class="headerlink" href="#same-origin-policy" title="Permanent link">&para;</a></h1>
+<h2 id="_1">什么是同源策略？<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>同源策略是浏览器的一个重要安全机制，它限制了一个源（origin）的文档或者它加载的脚本如何与另一个源的资源进行交互。这是为了防止恶意网站窃取用户数据或进行未授权的操作。</p>
+<h2 id="_2">同源的定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>两个URL被认为是<strong>同源</strong>，当且仅当它们满足以下三个条件完全相同：</p>
 <ol>
-<li><strong>需求分析阶段</strong>：识别安全需求和威胁模型</li>
-<li><strong>设计阶段</strong>：进行安全设计和架构评审</li>
-<li><strong>开发阶段</strong>：遵循安全编码规范</li>
-<li><strong>测试阶段</strong>：进行安全测试和渗透测试</li>
-<li><strong>部署阶段</strong>：安全配置和加固</li>
-<li><strong>维护阶段</strong>：持续监控和漏洞修复</li>
+<li><strong>协议(protocol)</strong> 相同</li>
+<li><strong>域名(domain)</strong> 相同</li>
+<li><strong>端口(port)</strong> 相同（如果指定了端口）</li>
 </ol>
-<h2 id="_3">学习资源<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">同源检测示例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>以下是一些同源检测的示例：</p>
+<table>
+<thead>
+<tr>
+<th>原始URL</th>
+<th>比较URL</th>
+<th>是否同源</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>http://example.com/page1</td>
+<td>http://example.com/page2</td>
+<td>是</td>
+<td>协议、域名、端口都相同</td>
+</tr>
+<tr>
+<td>http://example.com:8080</td>
+<td>http://example.com:8080/data</td>
+<td>是</td>
+<td>协议、域名、端口都相同</td>
+</tr>
+<tr>
+<td>http://example.com</td>
+<td>https://example.com</td>
+<td>否</td>
+<td>协议不同（http vs https）</td>
+</tr>
+<tr>
+<td>http://example.com</td>
+<td>http://www.example.com</td>
+<td>否</td>
+<td>域名不同</td>
+</tr>
+<tr>
+<td>http://example.com</td>
+<td>http://api.example.com</td>
+<td>否</td>
+<td>域名不同（子域名不同）</td>
+</tr>
+<tr>
+<td>http://example.com:80</td>
+<td>http://example.com:8080</td>
+<td>否</td>
+<td>端口不同</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">同源策略的限制范围<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>同源策略主要限制以下几个方面：</p>
+<h3 id="1-dom">1. DOM 访问<a class="headerlink" href="#1-dom" title="Permanent link">&para;</a></h3>
+<p>一个源的JavaScript不能直接访问另一个源页面的DOM。</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 以下代码如果在不同源的页面中执行，会抛出安全错误</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">iframe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;myIframe&#39;</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">otherDoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">iframe</span><span class="p">.</span><span class="nx">contentDocument</span><span class="p">;</span><span class="w"> </span><span class="c1">// 跨源时会报错</span>
+</span></code></pre></div>
+<h3 id="2-xmlhttprequest-fetch-api">2. XMLHttpRequest 和 Fetch API<a class="headerlink" href="#2-xmlhttprequest-fetch-api" title="Permanent link">&para;</a></h3>
+<p>默认情况下，这些API只能发起同源请求，不能向其他源发送请求。</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 跨源请求默认会被阻止</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;https://different-origin.com/data&#39;</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;跨域请求错误:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">));</span>
+</span></code></pre></div>
+<h3 id="3-cookielocalstorage-indexeddb">3. Cookie、LocalStorage 和 IndexedDB<a class="headerlink" href="#3-cookielocalstorage-indexeddb" title="Permanent link">&para;</a></h3>
+<p>这些存储机制受到同源策略的保护，一个源不能访问另一个源的数据。</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 只能访问当前源的localStorage数据</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;data&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 只能在同一源读取</span>
+</span></code></pre></div>
+<h3 id="4">4. 其他资源访问限制<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>如CSS、JavaScript文件虽然可以跨源加载，但受限于同源策略的其他规则。</p>
+<h2 id="_5">同源策略的例外<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 允许跨源嵌入的资源<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>以下资源默认允许跨源嵌入：</p>
 <ul>
-<li>OWASP Top 10：Web应用程序最关键的安全风险清单</li>
-<li>CWE/SANS Top 25：最危险的软件错误</li>
-<li>相关安全工具：OWASP ZAP、Burp Suite等渗透测试工具</li>
+<li><code>&lt;script&gt;</code> 标签加载的JavaScript</li>
+<li><code>&lt;link&gt;</code> 标签加载的CSS</li>
+<li><code>&lt;img&gt;</code> 标签加载的图片</li>
+<li><code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code> 标签加载的媒体文件</li>
+<li><code>&lt;iframe&gt;</code> 嵌入的任何资源</li>
+<li><code>&lt;object&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;applet&gt;</code> 嵌入的插件</li>
 </ul>
-<p>接下来，让我们详细探讨每种安全漏洞的原理、攻击方式和防御策略。</p>
+<h3 id="2-cors">2. 跨源资源共享 (CORS)<a class="headerlink" href="#2-cors" title="Permanent link">&para;</a></h3>
+<p>通过服务器配置特定的HTTP头，允许受控的跨源请求。</p>
+<h3 id="3-jsonp-json-with-padding">3. JSONP (JSON with Padding)<a class="headerlink" href="#3-jsonp-json-with-padding" title="Permanent link">&para;</a></h3>
+<p>利用<code>&lt;script&gt;</code>标签不受同源策略限制的特性，实现跨源数据获取。</p>
+<h2 id="_6">同源策略的重要性<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>同源策略是Web安全的基石，它提供了以下保护：</p>
+<ol>
+<li><strong>防止数据窃取</strong>：防止恶意网站读取另一个网站的敏感数据</li>
+<li><strong>保护用户凭证</strong>：防止跨站会话劫持</li>
+<li><strong>维护网站独立性</strong>：确保每个网站在自己的安全沙箱中运行</li>
+<li><strong>防止恶意操作</strong>：限制未授权的跨站操作</li>
+</ol>
+<h2 id="_7">同源策略的绕过风险<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>尽管同源策略提供了良好的保护，但仍存在一些绕过风险：</p>
+<ul>
+<li><strong>XSS攻击</strong>：如果网站存在XSS漏洞，攻击者可以注入脚本在同一源内执行，从而绕过同源策略</li>
+<li><strong>CSRF攻击</strong>：利用用户已有的认证状态发起跨站请求</li>
+<li><strong>iframe嵌套攻击</strong>：通过某些技巧绕过iframe的同源限制</li>
+</ul>
+<h2 id="_8">如何安全处理跨源交互<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>使用CORS进行合法跨域请求</strong></li>
+<li><strong>实施适当的内容安全策略(CSP)</strong></li>
+<li><strong>正确配置Cookie属性(SameSite, HttpOnly, Secure)</strong></li>
+<li><strong>对所有用户输入进行严格验证和转义</strong></li>
+<li><strong>使用postMessage API进行安全的跨源通信</strong></li>
+</ol>
+<h2 id="_9">总结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>同源策略是浏览器安全的基础机制，它通过限制不同源之间的资源访问，有效防范了各种恶意攻击。了解同源策略的工作原理和限制，对于构建安全的Web应用至关重要。在需要进行跨源交互时，应当采用安全的机制如CORS或postMessage，并确保正确实施各种安全最佳实践。</p>
 
 
 

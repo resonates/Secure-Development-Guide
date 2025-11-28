@@ -12,28 +12,28 @@
         <meta name="author" content="开发者">
       
       
-        <link rel="canonical" href="https://mydomain.org/secure-dev-guide/web-security/overview/">
+        <link rel="canonical" href="https://mydomain.org/secure-dev-guide/leetcode-top100/others/binary-search/">
       
       
-        <link rel="prev" href="../../frontend-security/cross-origin/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../sql-injection/">
+        <link rel="next" href="../merge-sorted-array/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
-        <title>概述 - 安全开发笔记库</title>
+        <title>二分查找 - 安全开发笔记库</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="安全开发笔记库" class="md-header__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
+    <a href="../../.." title="安全开发笔记库" class="md-header__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概述
+              二分查找
             
           </span>
         </div>
@@ -213,7 +213,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -234,7 +234,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../frontend-security/overview/" class="md-tabs__link">
+        <a href="../../../frontend-security/overview/" class="md-tabs__link">
           
   
   
@@ -250,13 +250,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../web-security/overview/" class="md-tabs__link">
           
   
   
@@ -276,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python-advanced/overview/" class="md-tabs__link">
+        <a href="../../../python-advanced/overview/" class="md-tabs__link">
           
   
   
@@ -292,11 +290,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../leetcode-top100/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../overview/" class="md-tabs__link">
           
   
   
@@ -332,7 +332,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="安全开发笔记库" class="md-nav__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
+    <a href="../../.." title="安全开发笔记库" class="md-nav__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg>
@@ -350,7 +350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -415,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend-security/overview/" class="md-nav__link">
+      <a href="../../../frontend-security/overview/" class="md-nav__link">
         
   
   
@@ -438,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend-security/same-origin-policy/" class="md-nav__link">
+      <a href="../../../frontend-security/same-origin-policy/" class="md-nav__link">
         
   
   
@@ -461,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../frontend-security/cross-origin/" class="md-nav__link">
+      <a href="../../../frontend-security/cross-origin/" class="md-nav__link">
         
   
   
@@ -488,31 +488,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -525,7 +520,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Web安全漏洞
@@ -536,32 +531,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    概述
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../web-security/overview/" class="md-nav__link">
         
   
   
@@ -572,131 +545,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#web_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      什么是Web安全漏洞？
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常见的Web安全漏洞类型
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常见的Web安全漏洞类型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sql-sql-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      SQL注入 (SQL Injection)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#xss-cross-site-scripting" class="md-nav__link">
-    <span class="md-ellipsis">
-      跨站脚本攻击 (XSS - Cross-Site Scripting)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#csrf-cross-site-request-forgery" class="md-nav__link">
-    <span class="md-ellipsis">
-      跨站请求伪造 (CSRF - Cross-Site Request Forgery)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#command-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      命令注入 (Command Injection)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      文件上传漏洞
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      认证与授权问题
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#web_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Web安全的重要性
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sdlc" class="md-nav__link">
-    <span class="md-ellipsis">
-      安全开发生命周期 (SDLC)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      学习资源
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -709,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-injection/" class="md-nav__link">
+      <a href="../../../web-security/sql-injection/" class="md-nav__link">
         
   
   
@@ -732,7 +580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xss/" class="md-nav__link">
+      <a href="../../../web-security/xss/" class="md-nav__link">
         
   
   
@@ -755,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../csrf/" class="md-nav__link">
+      <a href="../../../web-security/csrf/" class="md-nav__link">
         
   
   
@@ -778,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command-injection/" class="md-nav__link">
+      <a href="../../../web-security/command-injection/" class="md-nav__link">
         
   
   
@@ -801,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-upload/" class="md-nav__link">
+      <a href="../../../web-security/file-upload/" class="md-nav__link">
         
   
   
@@ -824,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../authentication/" class="md-nav__link">
+      <a href="../../../web-security/authentication/" class="md-nav__link">
         
   
   
@@ -897,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-advanced/overview/" class="md-nav__link">
+      <a href="../../../python-advanced/overview/" class="md-nav__link">
         
   
   
@@ -920,7 +768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-advanced/oop/" class="md-nav__link">
+      <a href="../../../python-advanced/oop/" class="md-nav__link">
         
   
   
@@ -943,7 +791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-advanced/multithreading/" class="md-nav__link">
+      <a href="../../../python-advanced/multithreading/" class="md-nav__link">
         
   
   
@@ -966,7 +814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-advanced/coroutines/" class="md-nav__link">
+      <a href="../../../python-advanced/coroutines/" class="md-nav__link">
         
   
   
@@ -989,7 +837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python-advanced/concurrency-best-practices/" class="md-nav__link">
+      <a href="../../../python-advanced/concurrency-best-practices/" class="md-nav__link">
         
   
   
@@ -1016,26 +864,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1048,7 +901,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             力扣Top100算法题
@@ -1062,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/overview/" class="md-nav__link">
+      <a href="../../overview/" class="md-nav__link">
         
   
   
@@ -1091,17 +944,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
             
   
   
@@ -1128,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/overview/" class="md-nav__link">
+      <a href="../../arrays-strings/overview/" class="md-nav__link">
         
   
   
@@ -1151,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/two-sum/" class="md-nav__link">
+      <a href="../../arrays-strings/two-sum/" class="md-nav__link">
         
   
   
@@ -1174,7 +1030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/longest-substring-without-repeating-characters/" class="md-nav__link">
+      <a href="../../arrays-strings/longest-substring-without-repeating-characters/" class="md-nav__link">
         
   
   
@@ -1197,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/longest-palindromic-substring/" class="md-nav__link">
+      <a href="../../arrays-strings/longest-palindromic-substring/" class="md-nav__link">
         
   
   
@@ -1220,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/container-with-most-water/" class="md-nav__link">
+      <a href="../../arrays-strings/container-with-most-water/" class="md-nav__link">
         
   
   
@@ -1243,7 +1099,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/arrays-strings/3sum/" class="md-nav__link">
+      <a href="../../arrays-strings/3sum/" class="md-nav__link">
         
   
   
@@ -1280,17 +1136,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
             
   
   
@@ -1317,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/linked-lists-trees/overview/" class="md-nav__link">
+      <a href="../../linked-lists-trees/overview/" class="md-nav__link">
         
   
   
@@ -1340,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/linked-lists-trees/reverse-linked-list/" class="md-nav__link">
+      <a href="../../linked-lists-trees/reverse-linked-list/" class="md-nav__link">
         
   
   
@@ -1363,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/linked-lists-trees/maximum-depth-of-binary-tree/" class="md-nav__link">
+      <a href="../../linked-lists-trees/maximum-depth-of-binary-tree/" class="md-nav__link">
         
   
   
@@ -1400,17 +1259,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
         
           
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
             
   
   
@@ -1437,7 +1299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/dynamic-programming/overview/" class="md-nav__link">
+      <a href="../../dynamic-programming/overview/" class="md-nav__link">
         
   
   
@@ -1460,7 +1322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/dynamic-programming/climbing-stairs/" class="md-nav__link">
+      <a href="../../dynamic-programming/climbing-stairs/" class="md-nav__link">
         
   
   
@@ -1483,7 +1345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/dynamic-programming/maximum-subarray/" class="md-nav__link">
+      <a href="../../dynamic-programming/maximum-subarray/" class="md-nav__link">
         
   
   
@@ -1511,26 +1373,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
             
   
   
@@ -1543,7 +1410,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_5">
             <span class="md-nav__icon md-icon"></span>
             其他类型
@@ -1557,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/others/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -1577,10 +1444,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../leetcode-top100/others/binary-search/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    二分查找
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1591,6 +1480,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目描述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      解题思路
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      最简单的方法（顺序查找）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      最优方案（二分查找）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      递归版本的二分查找（可选）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      复杂度分析
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1603,7 +1566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../leetcode-top100/others/merge-sorted-array/" class="md-nav__link">
+      <a href="../merge-sorted-array/" class="md-nav__link">
         
   
   
@@ -1650,42 +1613,94 @@
 
 
 
-<h1 id="web">Web安全漏洞概述<a class="headerlink" href="#web" title="Permanent link">&para;</a></h1>
-<h2 id="web_1">什么是Web安全漏洞？<a class="headerlink" href="#web_1" title="Permanent link">&para;</a></h2>
-<p>Web安全漏洞是指Web应用程序中存在的安全缺陷，可能被攻击者利用来获取未授权的访问权限、篡改数据、破坏服务或执行其他恶意操作。</p>
-<h2 id="web_2">常见的Web安全漏洞类型<a class="headerlink" href="#web_2" title="Permanent link">&para;</a></h2>
-<p>本笔记库将详细介绍以下几类常见的Web安全漏洞：</p>
-<h3 id="sql-sql-injection">SQL注入 (SQL Injection)<a class="headerlink" href="#sql-sql-injection" title="Permanent link">&para;</a></h3>
-<p>攻击者通过在输入字段中插入恶意SQL代码，操纵后端数据库查询，可能导致数据泄露、数据篡改甚至服务器控制。</p>
-<h3 id="xss-cross-site-scripting">跨站脚本攻击 (XSS - Cross-Site Scripting)<a class="headerlink" href="#xss-cross-site-scripting" title="Permanent link">&para;</a></h3>
-<p>攻击者在Web页面中注入恶意脚本，当其他用户浏览该页面时，脚本会在用户浏览器中执行，可能导致会话劫持、数据盗窃等问题。</p>
-<h3 id="csrf-cross-site-request-forgery">跨站请求伪造 (CSRF - Cross-Site Request Forgery)<a class="headerlink" href="#csrf-cross-site-request-forgery" title="Permanent link">&para;</a></h3>
-<p>攻击者诱导用户在已认证的Web应用程序上执行非预期的操作，利用用户的身份执行恶意请求。</p>
-<h3 id="command-injection">命令注入 (Command Injection)<a class="headerlink" href="#command-injection" title="Permanent link">&para;</a></h3>
-<p>攻击者通过Web应用程序执行系统命令，可能导致服务器完全被控制。</p>
-<h3 id="_1">文件上传漏洞<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>不安全的文件上传功能可能允许攻击者上传恶意文件，如WebShell，从而获取服务器访问权限。</p>
-<h3 id="_2">认证与授权问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>认证机制缺陷或授权控制不当可能导致未授权访问敏感功能或数据。</p>
-<h2 id="web_3">Web安全的重要性<a class="headerlink" href="#web_3" title="Permanent link">&para;</a></h2>
-<p>随着Web应用程序在企业和个人生活中的广泛应用，Web安全问题日益突出。安全的Web应用程序设计不仅能够保护用户数据安全，还能维护企业的声誉和避免法律责任。</p>
-<h2 id="sdlc">安全开发生命周期 (SDLC)<a class="headerlink" href="#sdlc" title="Permanent link">&para;</a></h2>
-<p>在开发过程中集成安全考虑是预防Web安全漏洞的最佳实践。安全开发生命周期包括：</p>
-<ol>
-<li><strong>需求分析阶段</strong>：识别安全需求和威胁模型</li>
-<li><strong>设计阶段</strong>：进行安全设计和架构评审</li>
-<li><strong>开发阶段</strong>：遵循安全编码规范</li>
-<li><strong>测试阶段</strong>：进行安全测试和渗透测试</li>
-<li><strong>部署阶段</strong>：安全配置和加固</li>
-<li><strong>维护阶段</strong>：持续监控和漏洞修复</li>
-</ol>
-<h2 id="_3">学习资源<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h1 id="_1">二分查找<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">题目描述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
+<h2 id="_3">解题思路<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>这个问题可以通过两种方法解决：
+1. 暴力解法：顺序查找
+2. 二分查找：利用数组有序的特性，每次将搜索范围减半</p>
+<h2 id="_4">最简单的方法（顺序查找）<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>从头到尾遍历数组，查找目标值。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">search_brute</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="c1"># 遍历整个数组</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="c1"># 如果找到目标值，返回索引</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>            <span class="k">return</span> <span class="n">i</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="c1"># 如果没有找到，返回-1</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></code></pre></div>
+<h2 id="_5">最优方案（二分查找）<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>利用数组有序的特性，每次将搜索范围减半。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">search_optimal</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="c1"># 初始化左边界和右边界</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">right</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="c1"># 当左边界小于等于右边界时，继续搜索</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="c1"># 计算中间位置（避免整数溢出的写法）</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="c1"># 如果中间元素等于目标值，返回索引</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            <span class="k">return</span> <span class="n">mid</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="c1"># 如果中间元素小于目标值，搜索右半部分</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        <span class="c1"># 如果中间元素大于目标值，搜索左半部分</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="c1"># 如果没有找到，返回-1</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></code></pre></div>
+<h2 id="_6">递归版本的二分查找（可选）<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>也可以使用递归实现二分查找：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">search_recursive</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">binary_search_helper</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="c1"># 基本情况：搜索范围为空</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="k">if</span> <span class="n">left</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 计算中间位置</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="n">mid</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="c1"># 如果找到目标值，返回索引</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="k">return</span> <span class="n">mid</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="c1"># 如果中间元素小于目标值，递归搜索右半部分</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">elif</span> <span class="n">nums</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        <span class="c1"># 如果中间元素大于目标值，递归搜索左半部分</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    <span class="c1"># 调用辅助函数开始搜索</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="k">return</span> <span class="n">binary_search_helper</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="_7">复杂度分析<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
-<li>OWASP Top 10：Web应用程序最关键的安全风险清单</li>
-<li>CWE/SANS Top 25：最危险的软件错误</li>
-<li>相关安全工具：OWASP ZAP、Burp Suite等渗透测试工具</li>
+<li><strong>顺序查找</strong>：</li>
+<li>时间复杂度：O(n)，其中 n 是数组长度</li>
+<li>
+<p>空间复杂度：O(1)</p>
+</li>
+<li>
+<p><strong>二分查找</strong>：</p>
+</li>
+<li>时间复杂度：O(log n)，每次将搜索范围减半</li>
+<li>
+<p>空间复杂度：O(1)</p>
+</li>
+<li>
+<p><strong>递归二分查找</strong>：</p>
+</li>
+<li>时间复杂度：O(log n)</li>
+<li>空间复杂度：O(log n)，递归调用栈的深度</li>
 </ul>
-<p>接下来，让我们详细探讨每种安全漏洞的原理、攻击方式和防御策略。</p>
+<p>二分查找是一种非常高效的搜索算法，特别是对于大规模有序数据集。它将时间复杂度从顺序查找的 O(n) 降低到了 O(log n)，在数据量很大时效率提升非常明显。</p>
 
 
 
@@ -1740,10 +1755,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "content.code.annotate", "content.code.copy", "navigation.top", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "content.code.annotate", "content.code.copy", "navigation.top", "search.highlight", "search.suggest"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
   </body>
